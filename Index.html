@@ -1,0 +1,1524 @@
+html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#fff4df">
+<title>Feliz Primavera, Mi Princesa 🌻</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+font-family:'DM Sans',sans-serif;
+color:#50382d;
+background:
+radial-gradient(circle at 10% 10%,#ffe7a866,transparent 25%),
+radial-gradient(circle at 90% 30%,#ffc8d055,transparent 28%),
+linear-gradient(180deg,#fffaf0,#fff1d9,#fff9ef);
+overflow-x:hidden;
+}
+
+.page{max-width:900px;margin:auto;position:relative;z-index:2}
+
+.floating{
+position:fixed;pointer-events:none;z-index:1;font-size:30px;
+opacity:.55;animation:float 7s ease-in-out infinite
+}
+.f1{left:5%;top:12%}
+.f2{right:7%;top:20%;animation-delay:-3s}
+.f3{left:10%;top:70%;animation-delay:-5s}
+.f4{right:12%;top:78%;animation-delay:-2s}
+.f5{left:45%;top:5%;animation-delay:-4s}
+
+@keyframes float{
+0%,100%{transform:translateY(0) rotate(0)}
+50%{transform:translateY(-18px) rotate(8deg)}
+}
+
+.hero{
+min-height:100svh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:30px 22px;
+text-align:center
+}
+
+.hero-inner{animation:heroIn 1.3s ease both}
+@keyframes heroIn{
+from{opacity:0;transform:translateY(35px) scale(.97)}
+to{opacity:1;transform:none}
+}
+
+.sunflower{
+display:block;
+font-size:70px;
+margin-bottom:10px;
+animation:sun 5s ease-in-out infinite
+}
+@keyframes sun{
+0%,100%{transform:rotate(-5deg) scale(1)}
+50%{transform:rotate(5deg) scale(1.08)}
+}
+
+.kicker{
+font-size:11px;
+letter-spacing:4px;
+text-transform:uppercase;
+color:#ae7754;
+margin-bottom:14px
+}
+
+h1{
+font-family:'Cormorant Garamond',serif;
+font-size:clamp(50px,12vw,88px);
+line-height:.88;
+font-weight:600;
+color:#593b2e
+}
+
+.subtitle{
+max-width:570px;
+margin:25px auto;
+font-family:'Cormorant Garamond',serif;
+font-size:25px;
+line-height:1.35;
+font-style:italic;
+color:#795d4e
+}
+
+.names{
+font-family:'Cormorant Garamond',serif;
+font-size:26px;
+color:#a2634f;
+margin-bottom:40px
+}
+
+.start{
+border:0;
+padding:16px 27px;
+border-radius:50px;
+background:#fff;
+color:#76503e;
+font-weight:600;
+font-size:14px;
+box-shadow:0 12px 35px #744a2d20;
+cursor:pointer;
+animation:pulse 2.2s infinite
+}
+@keyframes pulse{
+50%{box-shadow:0 18px 48px #744a2d30}
+}
+
+.memories{padding:70px 18px 100px}
+
+.section-title{text-align:center;margin-bottom:38px}
+.section-title .small{
+font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#b27b59
+}
+.section-title h2{
+font-family:'Cormorant Garamond',serif;
+font-size:47px;
+font-weight:600
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px
+}
+
+.card{
+position:relative;
+min-height:190px;
+padding:24px 20px;
+border-radius:28px;
+background:#ffffffb8;
+border:1px solid #a9734a20;
+box-shadow:0 12px 35px #67432a12;
+backdrop-filter:blur(12px);
+cursor:pointer;
+overflow:hidden;
+display:flex;
+flex-direction:column;
+justify-content:flex-end;
+transition:.35s ease;
+opacity:0;
+transform:translateY(25px)
+}
+
+.card.show{opacity:1;transform:none}
+.card:active{transform:scale(.97)}
+.card:hover{transform:translateY(-5px)}
+.card::before{
+content:"";
+position:absolute;
+width:110px;height:110px;
+border-radius:50%;
+background:#ffcf691f;
+right:-30px;top:-30px
+}
+
+.card-icon{
+position:absolute;
+top:19px;left:20px;font-size:38px
+}
+
+.card h3{
+font-family:'Cormorant Garamond',serif;
+font-size:30px;
+line-height:1;
+margin-bottom:8px
+}
+
+.card p{font-size:12px;color:#8c6b5a}
+.card-wide{grid-column:span 2;min-height:155px}
+
+.modal{
+position:fixed;
+inset:0;
+z-index:100;
+background:#37221899;
+backdrop-filter:blur(12px);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:18px;
+opacity:0;
+pointer-events:none;
+transition:.35s
+}
+.modal.active{opacity:1;pointer-events:auto}
+
+.modal-box{
+width:100%;
+max-width:650px;
+max-height:90svh;
+overflow:auto;
+background:#fffaf1;
+border-radius:32px;
+padding:32px 25px;
+box-shadow:0 30px 100px #22140c55;
+transform:translateY(30px) scale(.96);
+transition:.4s
+}
+.modal.active .modal-box{transform:none}
+
+.close{
+position:absolute;
+top:15px;right:15px;
+width:40px;height:40px;
+border:0;border-radius:50%;
+background:#f3e5d1;
+color:#6e4b3b;
+font-size:20px;
+cursor:pointer
+}
+
+.modal-icon{font-size:55px;margin-bottom:8px}
+.modal h2{
+font-family:'Cormorant Garamond',serif;
+font-size:44px;
+line-height:.95;
+margin-bottom:18px
+}
+.modal-text{
+font-size:15px;
+line-height:1.7;
+color:#72594b
+}
+
+.quote{
+margin:22px 0;
+padding:20px;
+border-left:3px solid #e4b16c;
+background:#fff4df;
+border-radius:0 18px 18px 0;
+font-family:'Cormorant Garamond',serif;
+font-size:23px;
+font-style:italic;
+color:#76503d
+}
+
+.details{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tag{
+padding:8px 12px;
+border-radius:30px;
+background:#f6e7d4;
+font-size:11px;
+color:#805c48
+}
+
+.movies{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.movie{
+padding:17px;
+border-radius:22px;
+background:#f8eddd
+}
+.movie-top{display:flex;align-items:center;gap:14px}
+.movie-icon{
+width:55px;height:70px;
+border-radius:12px;
+display:flex;align-items:center;justify-content:center;
+font-size:28px;
+background:linear-gradient(145deg,#e8bd82,#c98565)
+}
+.movie h3{
+font-family:'Cormorant Garamond',serif;
+font-size:25px
+}
+.movie p{font-size:11px;color:#8c6c5c;margin-top:3px}
+
+.timeline{
+margin-top:25px;
+border-left:2px solid #e6c18e;
+padding-left:22px
+}
+.time-item{position:relative;margin-bottom:28px}
+.time-item::before{
+content:"";
+position:absolute;
+width:11px;height:11px;
+background:#e1a765;
+border-radius:50%;
+left:-29px;top:6px;
+box-shadow:0 0 0 5px #fff5e5
+}
+.time-item h3{
+font-family:'Cormorant Garamond',serif;
+font-size:25px
+}
+.time-item p{
+font-size:13px;
+line-height:1.6;
+color:#806555
+}
+
+.final{
+min-height:90svh;
+padding:80px 25px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center
+}
+.final-inner{max-width:650px}
+.final-flower{font-size:75px;animation:float 5s infinite}
+.final h2{
+font-family:'Cormorant Garamond',serif;
+font-size:clamp(48px,12vw,78px);
+line-height:.9;
+margin:20px 0
+}
+.final p{
+font-family:'Cormorant Garamond',serif;
+font-size:25px;
+line-height:1.4;
+font-style:italic;
+color:#765b4c
+}
+.final-names{
+margin-top:35px;
+font-family:'Cormorant Garamond',serif;
+font-size:27px;
+color:#a3624d
+}
+.footer{
+margin-top:20px;
+font-size:11px;
+letter-spacing:2px;
+color:#a58a79
+}
+
+/* CARTA FINAL */
+
+.letter-screen{
+position:fixed;
+inset:0;
+z-index:300;
+background:
+radial-gradient(circle at 50% 0%,#ffe6aa,#d99c6240 35%,#4b2d208f),
+#4c3024;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:16px;
+opacity:0;
+pointer-events:none;
+transition:.7s ease
+}
+
+.letter-screen.active{
+opacity:1;
+pointer-events:auto
+}
+
+.letter{
+width:100%;
+max-width:720px;
+height:92svh;
+overflow:auto;
+padding:38px 25px 55px;
+border-radius:5px;
+background:
+linear-gradient(#fffdf6,#fff7e7);
+box-shadow:
+0 30px 100px #0008,
+inset 0 0 50px #c7954520;
+position:relative;
+transform:translateY(70px) rotate(1deg);
+transition:1s cubic-bezier(.2,.8,.2,1)
+}
+
+.letter-screen.active .letter{
+transform:translateY(0) rotate(0)
+}
+
+.letter::before{
+content:"";
+position:absolute;
+inset:14px;
+border:1px solid #b98b4c55;
+pointer-events:none
+}
+
+.letter-close{
+position:fixed;
+right:20px;
+top:20px;
+z-index:305;
+width:42px;
+height:42px;
+border:0;
+border-radius:50%;
+background:#fffaf0dd;
+font-size:20px;
+color:#5b3b2d
+}
+
+.letter-header{
+text-align:center;
+padding:15px 10px 30px
+}
+
+.letter-flower{font-size:52px}
+.letter h2{
+font-family:'Cormorant Garamond',serif;
+font-size:48px;
+line-height:.9;
+color:#5b3b2d;
+margin:12px 0
+}
+
+.letter-date{
+font-size:10px;
+letter-spacing:3px;
+text-transform:uppercase;
+color:#a47b59
+}
+
+.letter-body{
+font-family:'Cormorant Garamond',serif;
+font-size:21px;
+line-height:1.62;
+color:#594338
+}
+
+.letter-body p{margin:0 0 19px}
+
+.letter-body .big{
+font-size:29px;
+line-height:1.2;
+text-align:center;
+margin:30px 0
+}
+
+.letter-quote{
+margin:28px 0;
+padding:22px 20px;
+background:#fff0d1;
+border-radius:4px;
+border-left:3px solid #d29b51;
+font-size:25px;
+font-style:italic
+}
+
+.letter-sign{
+text-align:center;
+padding-top:25px
+}
+
+.letter-sign strong{
+display:block;
+font-size:31px;
+font-weight:600
+}
+
+.petal{
+position:fixed;
+top:-30px;
+z-index:310;
+pointer-events:none;
+font-size:22px;
+animation:petalFall linear forwards
+}
+
+@keyframes petalFall{
+to{
+transform:translateY(110vh) rotate(540deg);
+opacity:0
+}
+}
+
+.heart{
+position:fixed;
+pointer-events:none;
+z-index:400;
+animation:heartUp 2s ease-out forwards
+}
+@keyframes heartUp{
+0%{opacity:1;transform:translateY(0) scale(.5)}
+100%{opacity:0;transform:translateY(-180px) scale(1.4) rotate(25deg)}
+}
+
+@media(max-width:600px){
+.cards{grid-template-columns:1fr}
+.card-wide{grid-column:span 1}
+.memories{padding-left:15px;padding-right:15px}
+.letter{height:94svh;padding:30px 20px 50px}
+.letter h2{font-size:42px}
+.letter-body{font-size:20px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="floating f1">🌼</div>
+<div class="floating f2">🌻</div>
+<div class="floating f3">🌸</div>
+<div class="floating f4">🌷</div>
+<div class="floating f5">🌼</div>
+
+<main class="page">
+
+<section class="hero">
+<div class="hero-inner">
+
+<span class="sunflower">🌻</span>
+
+<div class="kicker">Una pequeña colección de nosotros</div>
+
+<h1>Feliz Primavera,<br>Mi Princesa</h1>
+
+<p class="subtitle">
+“Hay recuerdos que no necesitan quedarse en una foto
+para seguir siendo nuestros.”
+</p>
+
+<div class="names">Ángel × Jenifer ❤️</div>
+
+<button class="start" onclick="goMemories()">
+🌻 Toca para recordar
+</button>
+
+</div>
+</section>
+
+
+<section class="memories" id="memories">
+
+<div class="section-title">
+<div class="small">Ábrelos uno por uno</div>
+<h2>Nuestros recuerdos</h2>
+</div>
+
+<div class="cards">
+
+<article class="card" onclick="openMemory('story')">
+<div class="card-icon">🌸</div>
+<h3>Nuestra primera historia</h3>
+<p>Donde todo empezó a sentirse diferente.</p>
+</article>
+
+<article class="card" onclick="openMemory('movies')">
+<div class="card-icon">🎬</div>
+<h3>Nuestras películas</h3>
+<p>A Whisker Away, estrellas y Sabores de la juventud.</p>
+</article>
+
+<article class="card" onclick="openMemory('calls')">
+<div class="card-icon">📞</div>
+<h3>Nuestras llamadas</h3>
+<p>Esas noches que terminaban hablando de todo.</p>
+</article>
+
+<article class="card" onclick="openMemory('roblox')">
+<div class="card-icon">🎮</div>
+<h3>Donde comenzó todo</h3>
+<p>Un juego que terminó convirtiéndose en una historia.</p>
+</article>
+
+<article class="card" onclick="openMemory('chats')">
+<div class="card-icon">💬</div>
+<h3>Nuestras conversaciones</h3>
+<p>Mensajes pequeños que terminaron significando mucho.</p>
+</article>
+
+<article class="card" onclick="openMemory('moments')">
+<div class="card-icon">💌</div>
+<h3>Nuestros pequeños momentos</h3>
+<p>Las cosas simples que también se quedaron.</p>
+</article>
+
+<article class="card card-wide" onclick="openMemory('months')">
+<div class="card-icon">❤️</div>
+<h3>7 meses de nosotros</h3>
+<p>Siete meses de llamadas, risas, momentos difíciles y muchísimas razones para seguir eligiéndonos.</p>
+</article>
+
+<article class="card" onclick="openMemory('countries')">
+<div class="card-icon">🇨🇴</div>
+<h3>Ángel × Jenifer</h3>
+<p>Colombia × Paraguay.</p>
+</article>
+
+<article class="card" onclick="openLetter()">
+<div class="card-icon">🌻</div>
+<h3>Una última sorpresa</h3>
+<p>La carta que no pude entregarte en persona.</p>
+</article>
+
+</div>
+</section>
+
+
+<section class="final">
+<div class="final-inner">
+
+<div class="final-flower">🌻</div>
+
+<div class="kicker">Y si algún día olvidamos...</div>
+
+<h2>Volvamos<br>a recordar.</h2>
+
+<p>
+“Hoy no hace falta que todo sea perfecto…
+solo dejemos que el momento fluya.” ✨
+</p>
+
+<div class="final-names">Ángel × Jenifer ❤️</div>
+
+<div class="footer">7 MESES DE NOSOTROS · FELIZ PRIMAVERA</div>
+
+</div>
+</section>
+
+</main>
+
+
+<!-- MODAL DE RECUERDOS -->
+
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeMemory()">×</button>
+
+<div id="modalContent"></div>
+
+</div>
+</div>
+
+
+<!-- CARTA FINAL -->
+
+<div class="letter-screen" id="letterScreen">
+
+<button class="letter-close" onclick="closeLetter()">×</button>
+
+<div class="letter">
+
+<div class="letter-header">
+
+<div class="letter-flower">🌻</div>
+
+<div class="letter-date">
+14 • 09 • 2026 · 7 meses de nosotros
+</div>
+
+<h2>Para mi Princesa</h2>
+
+<div class="letter-date">
+Una carta que quería entregarte en persona
+</div>
+
+</div>
+
+
+<div class="letter-body">
+
+<p>Jenifer,</p>
+
+<p>
+Si llegaste hasta aquí, probablemente ya viste todos
+los pequeños recuerdos que quise guardar en esta página.
+Y la verdad… no sé muy bien cómo empezar esta parte.
+</p>
+
+<p>
+Porque hacer esto me da muchísima nostalgia.
+</p>
+
+<p>
+Y siendo completamente sincero contigo,
+yo no quisiera estar haciendo esto de esta manera.
+</p>
+
+<p>
+No porque no quiera hacerte algo bonito.
+Al contrario.
+Si fuera por mí, ahora mismo estaría buscando
+la manera de entregarte algo físicamente.
+Algo que pudiera poner en tus manos,
+mirarte a los ojos y decirte:
+“Esto es para ti”.
+</p>
+
+<p>
+Me gustaría poder ver tu reacción.
+Me gustaría poder abrazarte después.
+Me gustaría estar ahí.
+</p>
+
+<div class="letter-quote">
+Y por eso hice esto.
+</div>
+
+<p>
+No necesariamente porque sea un regalo físico,
+ni porque pueda compararse con algo que pudiera darte
+en persona.
+</p>
+
+<p>
+Lo hice simplemente porque quería que tuvieras algo
+que pudieras abrir, mirar y guardar.
+</p>
+
+<p>
+Algo que, aunque sea pequeño, pudiera recordarte
+que hay una persona al otro lado de la distancia
+que piensa muchísimo en ti.
+</p>
+
+<p class="big">
+Que te quiere.<br>
+Y que te considera una persona demasiado importante
+en su vida. ❤️
+</p>
+
+<p>
+Quería que al menos pudieras ver esto y recordar
+que todo lo que hemos vivido no son solamente
+conversaciones perdidas entre mensajes,
+llamadas que terminan y días que pasan.
+</p>
+
+<p>
+Son recuerdos.
+</p>
+
+<p class="big">Nuestros recuerdos.</p>
+
+<p>
+Y quizá por eso decidí juntar algunos de ellos aquí.
+</p>
+
+<p>
+Nuestras llamadas.<br>
+Nuestras conversaciones.<br>
+Los momentos pequeños.
+</p>
+
+<p>
+Aquel comienzo jugando Roblox que probablemente
+ninguno de los dos imaginaba que iba a terminar
+convirtiéndose en todo esto.
+</p>
+
+<p>
+Las noches hablando.
+Las risas.
+Los momentos bonitos.
+Los momentos difíciles.
+Los días en los que todo parecía perfecto
+y también esos días en los que las cosas no salieron
+como queríamos.
+</p>
+
+<p>
+Todo forma parte de nosotros.
+</p>
+
+<p>
+Y quiero guardar todo eso.
+Incluso las cosas que quizá en el momento
+parecían insignificantes.
+</p>
+
+<div class="letter-quote">
+Porque ahora, cuando miro hacia atrás,
+me doy cuenta de que muchas de esas cosas
+son precisamente las que más extraño.
+</div>
+
+<p>
+📞 Extraño nuestras llamadas.
+</p>
+
+<p>
+💬 Extraño nuestras conversaciones.
+</p>
+
+<p>
+🎮 Extraño esos momentos que empezaron
+con un simple juego.
+</p>
+
+<p>
+❤️ Extraño esa sensación de saber que estabas ahí.
+</p>
+
+<p>
+Y también están nuestras películas.
+</p>
+
+<p>
+Y esto me da hasta un poco de risa pensarlo.
+</p>
+
+<p>
+Porque si alguien me hubiera dicho hace tiempo
+que iba a terminar viendo anime,
+probablemente no le habría creído.
+</p>
+
+<p>
+Y entonces llegaste tú.
+</p>
+
+<p>
+Y terminaste siendo la persona que me hizo descubrir
+todo ese mundo.
+</p>
+
+<p>
+La persona que consiguió que empezara a ver anime.
+</p>
+
+<p>
+Y ahora tenemos recuerdos relacionados con películas,
+series, anime y un montón de historias
+que fuimos compartiendo.
+</p>
+
+<p class="big">
+🎬 A Whisker Away<br>
+🌌 Lo que le falta a esta estrella<br>
+🍜 Shiki Oriori: Sabores de la juventud
+</p>
+
+<p>
+Y todavía tenemos historias que ni siquiera hemos
+terminado de ver.
+</p>
+
+<p>
+Hay películas que ya forman parte de nuestros recuerdos
+y otras que todavía están esperando su momento.
+</p>
+
+<p>
+Y eso me gusta.
+</p>
+
+<p>
+Porque significa que todavía quedan muchas cosas
+por descubrir contigo.
+</p>
+
+<p>
+Muchas películas.<br>
+Muchas series.<br>
+Mucho anime.<br>
+Muchas noches.<br>
+Muchas conversaciones.<br>
+Muchos “mira esto”.<br>
+Muchos “tenemos que ver esto juntos”.
+</p>
+
+<p>
+Y espero que nunca dejemos de tener esas pequeñas cosas.
+</p>
+
+<p>
+Porque al final, creo que eso es lo bonito.
+</p>
+
+<p>
+No se trata solamente de las grandes fechas.
+</p>
+
+<p>
+Se trata de tener a alguien con quien compartir
+hasta las cosas más pequeñas.
+</p>
+
+<p>
+Una película.
+Una canción.
+Una escena.
+Un mensaje.
+Una llamada.
+Una tontería que nos hizo reír.
+</p>
+
+<p>
+Y de repente, sin darnos cuenta,
+eso termina formando una historia.
+</p>
+
+<p class="big">Nuestra historia. ❤️</p>
+
+<p>
+Y hoy quiero desearte una
+<strong>Feliz Primavera.</strong>
+</p>
+
+<p>
+Espero de verdad que esta nueva etapa
+venga llena de cosas bonitas para ti.
+</p>
+
+<p>
+Que podamos empezar este mes con toda la energía,
+con todas las ganas y con muchísimas cosas buenas
+por vivir.
+</p>
+
+<p>
+Porque además hay algo que me emociona muchísimo.
+</p>
+
+<p>
+El próximo mes es tu cumpleaños.
+</p>
+
+<p>
+Y no tienes idea de cuánto significa eso para mí.
+</p>
+
+<p>
+Llevo preparando cosas desde hace muchísimo tiempo.
+Muchísimo.
+</p>
+
+<p>
+Porque quiero que tu cumpleaños sea especial.
+</p>
+
+<p class="big">
+Demasiado especial. ❤️
+</p>
+
+<p>
+Quiero que cuando llegue ese día puedas sentir,
+aunque sea un poquito, todo el cariño que tengo por ti.
+</p>
+
+<p>
+Porque tú eres una de las personas más lindas
+que tengo en mi vida.
+</p>
+
+<p>
+Y no hablo solamente de lo bonita que puedas ser por fuera.
+</p>
+
+<p>
+Hablo de todo lo que eres.
+</p>
+
+<p>
+De tu forma de ser.
+De tu personalidad.
+De las cosas que te hacen diferente.
+De esas pequeñas cosas que quizá tú ni siquiera notas,
+pero que yo sí.
+</p>
+
+<p>
+Y por eso quiero esforzarme.
+</p>
+
+<p>
+Porque para mí vales muchísimo.
+</p>
+
+<div class="letter-quote">
+También quiero decirte algo sobre esta primavera.
+</div>
+
+<p>
+Ojalá esta sea una de nuestras primeras primaveras
+y también una de las últimas que tengamos que vivir
+de esta manera.
+</p>
+
+<p>
+A distancia.
+</p>
+
+<p>
+Porque si algo deseo de verdad es que las próximas
+podamos vivirlas juntos.
+</p>
+
+<p>
+No detrás de una pantalla.
+No solamente mediante una llamada.
+No teniendo que imaginar cómo sería poder darte algo.
+</p>
+
+<p>
+Quiero que algún día podamos estar juntos.
+</p>
+
+<p>
+Salir.
+Caminar.
+Ver una película.
+Reírnos de cualquier tontería.
+Hacer planes.
+Tomarnos fotos.
+</p>
+
+<p>
+Y simplemente disfrutar de estar en el mismo lugar.
+</p>
+
+<p>
+Quiero poder entregarte algo con mis propias manos.
+</p>
+
+<p>
+Quiero poder verte sonreír frente a mí.
+</p>
+
+<p>
+Quiero poder abrazarte después.
+</p>
+
+<p class="big">
+Y quiero que algún día podamos mirar atrás
+y decir:
+</p>
+
+<div class="letter-quote">
+“¿Te acuerdas cuando celebrábamos estas cosas a distancia?”
+</div>
+
+<p>
+Y reírnos porque finalmente lo conseguimos.
+</p>
+
+<p>
+No sé exactamente cuánto nos queda por recorrer.
+</p>
+
+<p>
+No sé cuántas cosas van a cambiar.
+</p>
+
+<p>
+No sé cuántos días difíciles tendremos todavía.
+</p>
+
+<p>
+Pero sí sé algo.
+</p>
+
+<p class="big">
+Quiero seguir creando recuerdos contigo. ❤️
+</p>
+
+<p>
+Quiero seguir teniendo películas que podamos recordar.
+</p>
+
+<p>
+Series que nos recuerden a una época.
+</p>
+
+<p>
+Anime que me haga pensar en ti porque fuiste tú
+quien consiguió que empezara a verlo.
+</p>
+
+<p>
+Canciones que tengan nuestra historia.
+</p>
+
+<p>
+Llamadas que algún día podamos recordar.
+</p>
+
+<p>
+Conversaciones que nos hagan reír.
+</p>
+
+<p>
+Y momentos que algún día podamos contar.
+</p>
+
+<p>
+Porque si algo he aprendido durante estos meses
+es que una relación no se construye solamente
+con grandes momentos.
+</p>
+
+<p>
+Se construye con cientos de pequeñas cosas.
+</p>
+
+<p>
+Y nosotros ya tenemos cientos.
+</p>
+
+<div class="letter-quote">
+🌻 Así que si algún día vuelves a abrir esta página,
+quiero que recuerdes esto:
+</div>
+
+<p>
+Que hubo alguien que quiso hacerte un pequeño lugar
+donde pudieras volver a nuestros recuerdos.
+</p>
+
+<p>
+Que hubo alguien que, aunque no pudo entregarte
+un regalo físicamente, buscó otra manera de hacerte
+sentir especial.
+</p>
+
+<p>
+Que hubo alguien que mientras hacía todo esto
+sintió nostalgia, porque lo único que realmente quería
+era estar ahí contigo.
+</p>
+
+<p>
+Y que detrás de cada palabra de esta página
+hay muchísimo cariño.
+</p>
+
+<p class="big">
+No es solamente una página.
+</p>
+
+<p>
+Es una pequeña parte de nosotros.
+</p>
+
+<p>
+De estos siete meses.
+</p>
+
+<p>
+De todo lo que hemos vivido.
+</p>
+
+<p>
+De todo lo que todavía nos falta vivir.
+</p>
+
+<p>
+Así que…
+</p>
+
+<p class="big">
+🌻 Feliz Primavera, mi Princesa. 🌻
+</p>
+
+<p>
+Espero que este mes sea bonito para ti.
+</p>
+
+<p>
+Espero que podamos comenzar esta nueva etapa con todo.
+</p>
+
+<p>
+Espero que sonrías muchísimo.
+</p>
+
+<p>
+Espero que sepas cuánto te quiero.
+</p>
+
+<p>
+Y espero que cuando llegue el próximo mes puedas sentir
+todo lo especial que estoy preparando para ti.
+</p>
+
+<p class="big">
+Porque sí…<br>
+Tu cumpleaños va a ser demasiado especial.
+</p>
+
+<p>
+Y llevo muchísimo tiempo pensando en cómo hacerlo.
+</p>
+
+<p>
+Porque si hay alguien que merece que me esfuerce,
+eres tú.
+</p>
+
+<p>
+Gracias por llegar.
+</p>
+
+<p>
+Gracias por quedarte.
+</p>
+
+<p>
+Gracias por todas las llamadas.
+</p>
+
+<p>
+Gracias por todas las conversaciones.
+</p>
+
+<p>
+Gracias por todas las películas.
+</p>
+
+<p>
+Gracias por cada serie.
+</p>
+
+<p>
+Gracias por cada anime que terminaste haciendo que viera.
+</p>
+
+<p>
+Gracias por cada risa.
+</p>
+
+<p>
+Gracias incluso por los días difíciles.
+</p>
+
+<p>
+Gracias por cada recuerdo.
+</p>
+
+<p>
+Gracias por estos siete meses.
+</p>
+
+<p>
+Y gracias por ser tú.
+</p>
+
+<p>
+Ojalá algún día podamos vivir todo esto sin una pantalla
+en medio.
+</p>
+
+<p>
+Ojalá la próxima primavera pueda estar ahí.
+</p>
+
+<p>
+Ojalá pueda darte algo físicamente.
+</p>
+
+<p>
+Ojalá pueda abrazarte y decirte todo esto
+sin tener que escribirlo.
+</p>
+
+<div class="letter-quote">
+Pero mientras ese día llega…<br><br>
+te dejo esto.
+</div>
+
+<p class="big">
+Una pequeña cajita de recuerdos.<br>
+Una pequeña parte de nosotros.<br>
+Y muchas historias que todavía nos quedan por vivir.
+</p>
+
+<div class="letter-sign">
+
+<p>
+<strong>Te quiero muchísimo, mi Princesa. ❤️</strong>
+</p>
+
+<p>Feliz Primavera. 🌻</p>
+
+<p style="margin-top:25px">
+Con todo mi cariño,
+</p>
+
+<strong>Ángel</strong>
+
+<p style="margin-top:10px">
+Ángel × Jenifer<br>
+7 meses de nosotros. ❤️
+</p>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+<script>
+
+const memories={
+
+story:{
+icon:"🌸",
+title:"Nuestra primera historia",
+text:`
+<p>Hay historias que empiezan con algo enorme. La nuestra no necesitó eso.</p>
+<p>Empezó con pequeños momentos, conversaciones, risas y esa sensación de que poco a poco había alguien que comenzaba a importar de una manera diferente.</p>
+<div class="quote">A veces no sabemos que estamos comenzando una historia mientras la estamos viviendo. ❤️</div>
+<p>Y quizá lo más bonito es mirar atrás y descubrir todo lo que nació de aquellos primeros momentos.</p>`
+},
+
+movies:{
+icon:"🎬",
+title:"Nuestras películas",
+text:`
+<p>Porque algunas citas no necesitan ser enormes. Solo necesitan tener a las dos personas correctas.</p>
+<div class="movies">
+<div class="movie"><div class="movie-top"><div class="movie-icon">🐱</div><div><h3>A Whisker Away</h3><p>Una de nuestras citas de 7 meses.</p></div></div></div>
+<div class="movie"><div class="movie-top"><div class="movie-icon">🌌</div><div><h3>Lo que le falta a esta estrella</h3><p>Una cita bajo las estrellas · 14 • 09 • 2026</p></div></div></div>
+<div class="movie"><div class="movie-top"><div class="movie-icon">🍜</div><div><h3>Shiki Oriori</h3><p>Sabores de la juventud.</p></div></div></div>
+</div>
+<div class="quote">“Hoy no hace falta que todo sea perfecto… solo dejemos que el momento fluya.” ✨</div>`
+},
+
+calls:{
+icon:"📞",
+title:"Nuestras llamadas",
+text:`
+<p>Quizá una de las cosas más bonitas fueron esas llamadas que parecían no tener hora para terminar.</p>
+<div class="timeline">
+<div class="time-item"><h3>📞 Una llamada más</h3><p>La típica llamada que comenzaba con un “¿qué haces?” y terminaba hablando de cualquier cosa.</p></div>
+<div class="time-item"><h3>🌙 Las noches</h3><p>Cuando el día ya había terminado, pero todavía quedaban ganas de escucharnos.</p></div>
+<div class="time-item"><h3>❤️ La costumbre bonita</h3><p>Porque con el tiempo escuchar tu voz se convirtió en una pequeña parte de mi día que siempre quería tener.</p></div>
+</div>`
+},
+
+roblox:{
+icon:"🎮",
+title:"Donde comenzó todo",
+text:`
+<p>Quién iba a pensar que un rato jugando Roblox terminaría siendo el comienzo de algo tan importante.</p>
+<div class="quote">Un juego fue el lugar donde empezó una historia que terminó siendo mucho más grande que el juego.</div>
+<p>Y ahora, cuando miramos hacia atrás, ese pequeño comienzo tiene otro significado.</p>`
+},
+
+chats:{
+icon:"💬",
+title:"Nuestras conversaciones",
+text:`
+<p>Hay mensajes que probablemente parecían normales cuando los escribimos.</p>
+<p>Pero con el tiempo algunos se convierten en recuerdos.</p>
+<div class="quote">Las conversaciones más simples pueden terminar siendo algunas de nuestras favoritas.</div>
+<p>Entre bromas, preocupaciones, planes, “buenas noches” y conversaciones sin sentido, fuimos construyendo algo que solamente nosotros entendemos.</p>`
+},
+
+moments:{
+icon:"💌",
+title:"Nuestros pequeños momentos",
+text:`
+<p>No todo lo bonito necesita convertirse en una gran fecha.</p>
+<p>A veces son los detalles pequeños: una llamada inesperada, una risa, un mensaje, una película, una conversación hasta tarde.</p>
+<div class="quote">Lo pequeño también puede quedarse para siempre.</div>
+<p>Y quizá por eso existen estos recuerdos: para guardar todas esas pequeñas cosas que juntas terminaron formando nuestra historia.</p>`
+},
+
+months:{
+icon:"❤️",
+title:"7 meses de nosotros",
+text:`
+<p>Siete meses.</p>
+<p>Puede parecer poco cuando se mira solamente como una cantidad de tiempo.</p>
+<p>Pero cuando miramos todo lo que ocurrió dentro de esos meses, se siente muchísimo más grande.</p>
+<div class="quote">7 meses de nosotros. ❤️</div>
+<p>Gracias por formar parte de tantos recuerdos, por las risas, por los momentos difíciles, por los días bonitos y por seguir estando aquí.</p>`
+},
+
+countries:{
+icon:"🇨🇴",
+title:"Ángel × Jenifer",
+text:`
+<div style="font-family:'Cormorant Garamond';font-size:38px;text-align:center;margin:20px 0">🇨🇴 Colombia<br><span style="font-size:25px">×</span><br>🇵🇾 Paraguay</div>
+<p>Dos lugares diferentes. Dos vidas diferentes. Dos personas que terminaron encontrándose.</p>
+<div class="quote">La distancia puede separar lugares, pero no necesariamente historias.</div>
+<p>Ángel × Jenifer.</p>
+<p>Y entre kilómetros, llamadas, mensajes, películas y pequeños momentos, fuimos creando nuestro propio lugar: nosotros.</p>`
+}
+};
+
+function goMemories(){
+document.getElementById("memories").scrollIntoView({behavior:"smooth"});
+createHearts(5)
+}
+
+function openMemory(key){
+const m=memories[key];
+document.getElementById("modalContent").innerHTML=
+`<div class="modal-icon">${m.icon}</div><h2>${m.title}</h2><div class="modal-text">${m.text}</div>`;
+document.getElementById("modal").classList.add("active");
+document.body.style.overflow="hidden";
+createHearts(3)
+}
+
+function closeMemory(){
+document.getElementById("modal").classList.remove("active");
+document.body.style.overflow=""
+}
+
+document.getElementById("modal").addEventListener("click",e=>{
+if(e.target===e.currentTarget)closeMemory()
+});
+
+
+/* CARTA */
+
+function openLetter(){
+
+document.getElementById("letterScreen").classList.add("active");
+document.body.style.overflow="hidden";
+
+createPetals(35);
+createHearts(8);
+
+}
+
+function closeLetter(){
+
+document.getElementById("letterScreen").classList.remove("active");
+document.body.style.overflow="";
+
+}
+
+
+function createPetals(amount){
+
+for(let i=0;i<amount;i++){
+
+setTimeout(()=>{
+
+const p=document.createElement("div");
+
+p.className="petal";
+
+p.innerHTML=["🌸","🌷","🌼","🌻"][Math.floor(Math.random()*4)];
+
+p.style.left=Math.random()*100+"%";
+p.style.animationDuration=(4+Math.random()*5)+"s";
+p.style.fontSize=(13+Math.random()*15)+"px";
+
+document.body.appendChild(p);
+
+setTimeout(()=>p.remove(),10000);
+
+},i*80);
+
+}
+
+}
+
+
+function createHearts(amount){
+
+for(let i=0;i<amount;i++){
+
+setTimeout(()=>{
+
+const h=document.createElement("div");
+
+h.className="heart";
+h.innerHTML=["❤️","🌸","✨","🌻"][Math.floor(Math.random()*4)];
+
+h.style.left=(Math.random()*90+5)+"%";
+h.style.bottom=(Math.random()*25+10)+"%";
+
+document.body.appendChild(h);
+
+setTimeout(()=>h.remove(),2000);
+
+},i*160);
+
+}
+
+}
+
+
+/* TARJETAS */
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}
+
+});
+
+},{threshold:.12});
+
+document.querySelectorAll(".card").forEach((card,i)=>{
+
+card.style.transitionDelay=(i*.07)+"s";
+observer.observe(card);
+
+});
+
+
+/* ESC */
+
+document.addEventListener("keydown",e=>{
+
+if(e.key==="Escape"){
+
+closeMemory();
+closeLetter();
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
+```
